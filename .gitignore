@@ -427,3 +427,8 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+
+# JetBrains 
+.idea/
+
+.DS_Store
