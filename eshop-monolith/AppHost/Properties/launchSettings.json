@@ -4,6 +4,7 @@
         "AppHost": {
             "commandName": "Project",
             "environmentVariables": {
+                "DOTNET_ENVIRONMENT": "Development",
                 "ASPNETCORE_URLS": "http://localhost:17079",
                 "ASPIRE_ALLOW_UNSECURED_TRANSPORT": "true",
                 "ASPIRE_DASHBOARD_OTLP_ENDPOINT_URL": "http://localhost:4317",
