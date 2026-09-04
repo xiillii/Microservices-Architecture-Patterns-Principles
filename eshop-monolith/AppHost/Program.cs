@@ -1,6 +1,8 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
 // 1. Add the password parameter from configuration/secrets
+// recuerda usar el comando en el proyecto: dotnet user-secrets init
+// dotnet user-secrets set "postgres-password" "password"
 var postgresPassword = builder.AddParameter("postgres-password", secret: true);
 
 // 2. Pass it to the postgres builder
