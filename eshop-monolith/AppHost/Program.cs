@@ -1,7 +1,11 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
+// 1. Add the password parameter from configuration/secrets
+var postgresPassword = builder.AddParameter("postgres-password", secret: true);
+
+// 2. Pass it to the postgres builder
 var postgres = builder
-        .AddPostgres("postgres")
+        .AddPostgres("postgres", password: postgresPassword) 
         .WithPgAdmin(pgAdmin => pgAdmin.WithUrlForEndpoint("http", url => url.DisplayText = "PostgreDB Browser"))
         .WithDataVolume()
         .WithLifetime(ContainerLifetime.Persistent);

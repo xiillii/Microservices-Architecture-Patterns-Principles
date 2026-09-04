@@ -1,4 +1,5 @@
-﻿using WebApp.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using WebApp.Models;
 
 namespace WebApp.Data;
 
@@ -10,7 +11,7 @@ public static class Extentions
 
         var context = scope.ServiceProvider.GetRequiredService<EShopDbContext>();
 
-        context.Database.EnsureCreated();
+        context.Database.Migrate();
         DataSeeder.Seed(context);
     }
 }

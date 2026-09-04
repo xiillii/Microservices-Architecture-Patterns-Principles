@@ -61,51 +61,51 @@ else
         products = await EShopDbContext.Products.ToListAsync();
     }
 
-    private async Task AddToCart(Product product)  
-    {  
-        var basket = await EShopDbContext.LoadUserBasket();
+    private async Task AddToCart(Product product)
+    {
+        var basket = await EShopDbContext.LoadUserBasket();        
 
-        // Check if the item already exists in the basket  
+        // Check if the item already exists in the basket
         var existingItem = basket.Items.FirstOrDefault(item => item.ProductId == product.Id);  
         if (existingItem != null)  
         {  
-            // If the item exists, increase the quantity  
+            // If the item exists, increase the quantity
             existingItem.Quantity++;  
-        }  
+        }
         else  
         {  
-            // If the item does not exist, add it to the basket  
-            basket.Items.Add(new ShoppingCartItem  
+            // If the item does not exist, add it to the basket
+            basket.Items.Add(new ShoppingCartItem
                 {  
-                    ProductId = product.Id,  
-                    ProductName = product.Name,  
-                    Price = product.Price,  
-                    Color = "Blue",  
-                    Quantity = 1  
-                });  
-        }  
-
-        // Check if the basket is a new entity or an existing one  
-        if (basket.Id == 0)  
-        {  
-            // New basket, add it to the context  
-            EShopDbContext.ShoppingCarts.Add(basket);  
-        }  
-        else  
-        {  
-            // Existing basket, update it in the context  
-            EShopDbContext.ShoppingCarts.Update(basket);  
+                    ProductId = product.Id,
+                    ProductName = product.Name,
+                    Price = product.Price,
+                    Color = "Blue",
+                    Quantity = 1
+                });
         }
 
-        await EShopDbContext.SaveChangesAsync();              
+        // Check if the basket is a new entity or an existing one  
+        if (basket.Id == 0)
+        {  
+            // New basket, add it to the context
+            EShopDbContext.ShoppingCarts.Add(basket);
+        }
+        else
+        {
+            // Existing basket, update it in the context  
+            EShopDbContext.ShoppingCarts.Update(basket);
+        }
 
-        // Show notification  
-        showNotification = true;  
-        StateHasChanged();  
+        await EShopDbContext.SaveChangesAsync();
 
-        // Hide notification after 1 seconds  
-        await Task.Delay(1000);  
-        showNotification = false;  
-        StateHasChanged();  
+        // Show notification
+        showNotification = true;
+        StateHasChanged();
+
+        // Hide notification after 1 seconds
+        await Task.Delay(1000);
+        showNotification = false;
+        StateHasChanged();
     }    
 }

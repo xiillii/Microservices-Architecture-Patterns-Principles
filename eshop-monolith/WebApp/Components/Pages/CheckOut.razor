@@ -90,7 +90,7 @@ else
 
    protected override async Task OnInitializedAsync()
    {  
-        basket = await EShopDbContext.LoadUserBasket();
+       basket = await EShopDbContext.LoadUserBasket();       
    }
 
    private async Task PerformCheckout()  
