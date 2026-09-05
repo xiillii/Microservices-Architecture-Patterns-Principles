@@ -1,5 +1,5 @@
 ﻿@page "/cart"
-@inject EShopDbContext EShopDbContext
+@inject ApiServiceClient ApiServiceClient
 @inject NavigationManager NavigationManager
 @rendermode InteractiveServer
 
@@ -60,14 +60,14 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        basket = await EShopDbContext.LoadUserBasket();
+        basket = await ApiServiceClient.LoadUserBasket();
     }
 
     private async Task RemoveItem(ShoppingCartItem item)
     {
         basket.Items.Remove(item);
 
-        await EShopDbContext.SaveChangesAsync();        
+        await ApiServiceClient.UpdateBasket(basket);
     }
 
     private void ContinueShopping()

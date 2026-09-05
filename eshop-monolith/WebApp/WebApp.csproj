@@ -7,15 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.3.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.6">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>    
+    <Compile Include="..\ApiService\Models\Order.cs" Link="Models\Order.cs" />
+    <Compile Include="..\ApiService\Models\Product.cs" Link="Models\Product.cs" />
+    <Compile Include="..\ApiService\Models\ShoppingCart.cs" Link="Models\ShoppingCart.cs" />
+    <Compile Include="..\ApiService\Models\ShoppingCartItem.cs" Link="Models\ShoppingCartItem.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ServiceDefaults\ServiceDefaults.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>

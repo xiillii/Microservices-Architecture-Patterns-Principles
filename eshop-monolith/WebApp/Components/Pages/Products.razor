@@ -1,5 +1,5 @@
 ﻿@page "/products"
-@inject EShopDbContext EShopDbContext
+@inject ApiServiceClient ApiServiceClient
 @attribute [StreamRendering(true)]
 @rendermode InteractiveServer
 
@@ -57,13 +57,13 @@ else
     private bool showNotification;
 
     protected override async Task OnInitializedAsync()
-    {
-        products = await EShopDbContext.Products.ToListAsync();
+    {        
+        products = await ApiServiceClient.GetProducts();
     }
 
     private async Task AddToCart(Product product)
     {
-        var basket = await EShopDbContext.LoadUserBasket();        
+        var basket = await ApiServiceClient.LoadUserBasket();
 
         // Check if the item already exists in the basket
         var existingItem = basket.Items.FirstOrDefault(item => item.ProductId == product.Id);  
@@ -85,19 +85,7 @@ else
                 });
         }
 
-        // Check if the basket is a new entity or an existing one  
-        if (basket.Id == 0)
-        {  
-            // New basket, add it to the context
-            EShopDbContext.ShoppingCarts.Add(basket);
-        }
-        else
-        {
-            // Existing basket, update it in the context  
-            EShopDbContext.ShoppingCarts.Update(basket);
-        }
-
-        await EShopDbContext.SaveChangesAsync();
+        await ApiServiceClient.UpdateBasket(basket);
 
         // Show notification
         showNotification = true;

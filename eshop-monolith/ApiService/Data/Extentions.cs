@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WebApp.Models;
+using ApiService.Models;
 
-namespace WebApp.Data;
+namespace ApiService.Data;
 
 public static class Extentions
 {
