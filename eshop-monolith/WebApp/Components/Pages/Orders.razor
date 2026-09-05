@@ -1,5 +1,5 @@
 ﻿@page "/orders"
-@inject EShopDbContext EShopDbContext
+@inject ApiServiceClient ApiServiceClient
 @attribute [StreamRendering(true)]
 @rendermode InteractiveServer
 
@@ -46,7 +46,7 @@ else
     private List<Order>? orders;    
 
     protected override async Task OnInitializedAsync()
-    {
-        orders = await EShopDbContext.Orders.ToListAsync();
+    {        
+        orders = await ApiServiceClient.GetAllOrders();
     }
 }

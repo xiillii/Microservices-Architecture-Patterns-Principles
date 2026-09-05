@@ -1,11 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
-using WebApp.Models;
+﻿using ApiService.Models;
+using Microsoft.EntityFrameworkCore;
 
-namespace WebApp.Data;
+namespace ApiService.Data;
 
 public class EShopDbContext : DbContext
 {
-    public EShopDbContext(DbContextOptions<EShopDbContext> options) 
+    public EShopDbContext(DbContextOptions<EShopDbContext> options)
         : base(options)
     {
     }

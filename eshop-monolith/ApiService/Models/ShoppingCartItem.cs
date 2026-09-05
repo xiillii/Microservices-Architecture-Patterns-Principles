@@ -1,4 +1,4 @@
-﻿namespace WebApp.Models;
+﻿namespace ApiService.Models;
 
 public class ShoppingCartItem
 {
